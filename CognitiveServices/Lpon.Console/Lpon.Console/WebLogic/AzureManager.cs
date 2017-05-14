@@ -30,7 +30,7 @@ namespace Lpon.Console.WebLogic
                 responseString = responseString.Substring(1, responseString.Length - 2);
                 if (responseString.Length < 3)
                 {
-                    return JToken.FromObject("0.0");
+                    return JToken.FromObject(0);
                 }
                 JObject emotionScore = JObject.Parse(responseString);
                 JToken happiness = emotionScore["scores"]["happiness"];
