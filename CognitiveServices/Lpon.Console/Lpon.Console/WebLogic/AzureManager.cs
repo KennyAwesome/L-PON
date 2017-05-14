@@ -40,7 +40,6 @@ namespace Lpon.Console.WebLogic
 
         static async void MakeRequest(string imageFilePath)
         {
-            // Request body. Try this sample with a locally stored JPEG image. 
             byte[] byteData = GetImageAsByteArray(imageFilePath);
             await MakeRequest(byteData);
         }
