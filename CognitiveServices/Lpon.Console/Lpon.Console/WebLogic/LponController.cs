@@ -45,7 +45,7 @@ namespace Lpon.Console.WebLogic
         //}
 
         [HttpPost]
-        public async Task<JObject> SendImage([FromBody]UserImage value)
+        public JToken SendImage([FromBody]UserImage value)
         {
             if (!String.IsNullOrEmpty(value.CapturedImage))
             {
@@ -55,7 +55,18 @@ namespace Lpon.Console.WebLogic
                 //    imageFile.Write(bytes, 0, bytes.Length);
                 //    imageFile.Flush();
                 //}
-                return await AzureManager.MakeRequest(bytes);
+                JToken returnValue = null;
+                try
+                {
+                    returnValue = AzureManager.MakeRequest(bytes).Result;
+                    System.Console.WriteLine($"Captured image... happiness:{returnValue}");
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                }
+                
+                return returnValue;
             }
 
             Response response = new Response()

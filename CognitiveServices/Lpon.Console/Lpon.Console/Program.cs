@@ -21,38 +21,6 @@ namespace Lpon.Console
             // Start OWIN host 
             using (WebApp.Start<Startup>(url: baseAddress))
             {
-                // Create HttpCient and make a request to api/lpon 
-                HttpClient client = new HttpClient();
-
-                var response = client.GetAsync(baseAddress + "api/Lpon/get").Result;
-
-                WriteLine(response);
-                WriteLine(response.Content.ReadAsStringAsync().Result);
-
-                //make a call
-                //var httpWebRequest = (HttpWebRequest)WebRequest.Create(baseAddress + "api/Lpon");
-                //httpWebRequest.ContentType = "text/json;";
-                //httpWebRequest.Method = "POST";
-
-                //using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                //{
-                //    string loginjson = JObject.FromObject(new 
-                //    {
-                //        userName = "Testuser",
-                //        password = "1233"
-                //    }).ToString();
-
-                //    streamWriter.Write(loginjson);
-                //    streamWriter.Flush();
-                //    streamWriter.Close();
-
-                //    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                //    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                //    {
-                //        var result = streamReader.ReadToEnd();
-                //        WriteLine(result);
-                //    }
-                //}
                 ReadLine();
             }
 

@@ -12,29 +12,30 @@ namespace Lpon.Console.WebLogic
 {
     public class AzureManager
     {
-        static public async Task<JObject> MakeRequest(byte[] byteData)
+        static public async Task<JToken> MakeRequest(byte[] byteData)
         {
             var client = new HttpClient();
 
-            // Request headers
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "6f1b3228984c4fc59365f97893cb0610");
 
             string uri = "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?";
             HttpResponseMessage response;
-            //string responseContent;
             
 
             using (var content = new ByteArrayContent(byteData))
             {
-                // This example uses content type "application/octet-stream".
-                // The other content types you can use are "application/json" and "multipart/form-data".
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                 response = await client.PostAsync(uri, content);
                 string responseString = await response.Content.ReadAsStringAsync();
-                return JObject.Parse(responseString);
+                responseString = responseString.Substring(1, responseString.Length - 2);
+                if (responseString.Length < 3)
+                {
+                    return JToken.FromObject("0.0");
+                }
+                JObject emotionScore = JObject.Parse(responseString);
+                JToken happiness = emotionScore["scores"]["happiness"];
+                return happiness;
             }
-
-            //A peak at the JSON response.
         }
 
         static async void MakeRequest(string imageFilePath)
