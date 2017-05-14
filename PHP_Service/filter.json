@@ -1,0 +1,71 @@
+{
+    "fields": [
+        {
+            "name": "sl_gender",
+            "type": "string"
+        },
+        {
+            "name": "sl_min_price",
+            "type": "integer"
+        },
+        {
+            "name": "sl_max_price",
+            "type": "integer"
+        },
+        {
+            "name": "sl_color",
+            "type": "string"
+        },
+        {
+            "name": "sl_occasion",
+            "type": "string"
+        },
+        {
+            "name": "sl_style",
+            "type": "string"
+        },
+        {
+            "name": "wg_age",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "wg_min_price",
+            "type": "integer"
+        },
+        {
+            "name": "wg_max_price",
+            "type": "integer"
+        },
+        {
+            "name": "wg_date_from",
+            "type": "date"
+        },
+        {
+            "name": "wg_date_to",
+            "type": "date"
+        },
+        {
+            "name": "wg_city_id",
+            "type": "integer"
+        },
+        {
+            "name": "user_id",
+            "type": "integer#unsigned"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "user_id",
+            "references": "id",
+            "on": "users",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\User"
+        }
+    ]
+}

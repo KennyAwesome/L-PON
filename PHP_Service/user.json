@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "uuid",
+            "type": "char"
+        },
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "type": "string"
+        },
+        {
+            "name": "password",
+            "type": "string"
+        }
+    ]
+}
